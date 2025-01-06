@@ -30,7 +30,7 @@ const getRecommendFood = async (req, res) => {
     return res.json(nutritionData);
   } catch (error) {
     console.error("Error details:", error);
-    return res.status(500).json({ error: error.message });
+    return res.json({"Proteins":"0","Carbs":"0","Fats":"0","Calories":"0"});
   }
 };
 
