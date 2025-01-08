@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
+import axios from 'axios'
 
 const MealInput = () => {
   const [mealsList, setMealsList] = useState([""]); // Initial state with one input box
@@ -16,12 +17,23 @@ const MealInput = () => {
     setMealsList(updatedMeals);
   };
 
-  // Handle the submission of all meals
-  const handleSubmit = () => {
-    const filteredMeals = mealsList.filter((meal) => meal.trim() !== ""); // Remove empty inputs
-    console.log("Submitted Meals:", filteredMeals); // Replace this with API call or further logic
-    alert(`Meals Submitted: ${filteredMeals.join(", ")}`);
-  };
+const handleSubmit = async () => {
+  const filteredMeals = mealsList.filter((meal) => meal.trim() !== ""); // Remove empty inputs
+  const results = [];
+
+  // Use for...of to handle async operations properly
+  for (const meal of filteredMeals) {
+    try {
+      const response = await axios.post('http://localhost:3000/health/api/v1/recom', { prompt: meal });
+      results.push(response.data); // Store the results if needed
+    } catch (error) {
+      console.error(error.response || error.message);
+    }
+  }
+
+  console.log('All results:', results);
+};
+
 
   return (
     <div className="w-[50%] mt-[60px] flex flex-col items-center">
@@ -59,5 +71,6 @@ const MealInput = () => {
     </div>
   );
 };
+
 
 export default MealInput;
