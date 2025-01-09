@@ -1,7 +1,6 @@
 import React from 'react'
 import Greeting from '../components/Greeting'
 import Navigation from '../components/Navigation'
-import MealInput from '../components/MealInput'
 import MealBox from '../components/MealBox'
 
 const Home = () => {
