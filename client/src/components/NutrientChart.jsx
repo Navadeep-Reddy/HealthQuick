@@ -65,7 +65,7 @@ const Example = ({ data }) => {
   const validData = data.filter(item => item.value > 0);
 
   return (
-    <div className='w-[50%] h-[400px]'>
+    <div className='w-[100%] h-[400px]'>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={500} height={400}>
           {validData.length > 0 && (

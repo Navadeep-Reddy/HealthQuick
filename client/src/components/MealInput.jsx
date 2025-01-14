@@ -2,7 +2,7 @@ import React from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import axios from 'axios'
 
-const MealInput = ({mealsList, setMealsList, setResult}) => {
+const MealInput = ({mealsList, setMealsList, setResult, setCalories}) => {
   const handleAddInput = () => {
     setMealsList([...mealsList, ""]);
   };
@@ -13,30 +13,46 @@ const MealInput = ({mealsList, setMealsList, setResult}) => {
     setMealsList(updatedMeals);
   };
 
+
   const handleSubmit = async () => {
     const filteredMeals = mealsList.filter((meal) => meal.trim() !== "");
     const results = [];
 
     try {
-      const response = await axios.post('http://localhost:3000/health/api/v1/recom', { prompt: filteredMeals[0] });
-      results.push(response.data);
+      for(const value of filteredMeals){
+        const response = await axios.post('http://localhost:3000/health/api/v1/recom', { prompt: value });
+        results.push(response.data);
+      }
+
+      let calories = 0;
+      let proteins = 0;
+      let carbs = 0
+      let fats = 0;
+
+      for (let i = 0; i < results.length; i++){
+        calories += parseInt(results[i].Calories)
+        proteins += parseInt(results[i].Proteins)
+        carbs += parseInt(results[i].Carbs)
+        fats += parseInt(results[i].Fats)
+      }
 
       // Convert string values to numbers and set the result
       setResult([
-        { name: 'Proteins', value: parseFloat(results[0].Proteins) || 0 },
-        { name: 'Carbs', value: parseFloat(results[0].Carbs) || 0 },
-        { name: 'Fats', value: parseFloat(results[0].Fats) || 0 },
-        { name: 'Calories', value: parseFloat(results[0].Calories) || 0 },
+        { name: 'Proteins (g)', value: parseFloat(proteins) || 0 },
+        { name: 'Carbs (g)', value: parseFloat(carbs) || 0 },
+        { name: 'Fats (g)', value: parseFloat(fats) || 0 },
+        //{ name: 'Calories', value: parseFloat(results[0].Calories) || 0 },
       ]);
+      setCalories(calories);
 
-      console.log('Updated Result:', results[0]);
+      console.log('Updated Result:', results);
     } catch (error) {
       console.error(error.response || error.message);
     }
   };
 
   return (
-    <div className="w-[50%] mt-[60px] flex flex-col items-center">
+    <div className="w-[100%] mt-[60px] flex flex-col items-center">
       <p className="text-2xl text-TBlack font-medium mb-4">Add Meals</p>
       {mealsList.map((meal, index) => (
         <div key={index} className="flex items-center mb-2 w-full">
@@ -58,7 +74,7 @@ const MealInput = ({mealsList, setMealsList, setResult}) => {
       </div>
       <button
         onClick={handleSubmit}
-        className="mt-6 bg-DGreen text-white px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack"
+        className="mt-6 w-32 bg-DGreen text-white px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack"
       >
         Calculate
       </button>

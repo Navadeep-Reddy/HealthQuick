@@ -6,5 +6,7 @@ router.post('/recom', controller.postRecommendFood)
 
 router.get('/userid:googleid', controller.getUserId)
 
+router.post('/mealLog', controller.postMeal)
+
 
 module.exports = router;

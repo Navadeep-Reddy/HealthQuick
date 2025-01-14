@@ -16,6 +16,7 @@ const client = new MongoClient(uri, {
 
 const db = client.db('hquickie');
 const user_collection = db.collection('users');  
+const meal_collection = db.collection('meals')
 
 
 // test function to show how mongoDB can be used here
@@ -64,7 +65,7 @@ const postRecommendFood = async (req, res) => {
 const getUserId = async (req, res) => {
     const g_id = req.params.googleid;
 
-    // Directing writing the query along with the options which will have sort and projection
+    // Directly writing the query along with the options which will have sort and projection
     const obj_id = await user_collection.findOne({googleId: g_id}, {
         projection: {_id:true}
     })
@@ -72,7 +73,36 @@ const getUserId = async (req, res) => {
     res.json(obj_id)
 }
 
+const postMeal = async (req, res) => {
+
+  try{
+    const {Calories, Proteins, Carbs, Fats} = req.body;
+
+    const result = await meal_collection.insertOne({
+      name: "Navadeep",
+      nutrients: {
+        Proteins: Proteins,
+        Carbs: Carbs,
+        Fats: Fats,
+        Calories: Calories
+      }
+    });
+    res.status(201).json({
+      message: "Meal added successfully",
+      mealId: result.insertedId
+    });
+  }
+
+  catch(error) {
+    console.error("Error inserting meal:", error);
+    res.status(500).json({ error: "An error occurred while adding the meal" });    
+  }
+
+    
+}
+
 module.exports = {
   postRecommendFood,
-  getUserId
+  getUserId,
+  postMeal
 }
