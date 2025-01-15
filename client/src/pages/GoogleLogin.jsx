@@ -18,7 +18,7 @@ const GoogleLogin = () => {
       updateUserDetails({
         name: user.displayName,
         email: user.email,
-        id: user.providerId,
+        id: user.uid,
         photo: user.photoURL
       })
 
