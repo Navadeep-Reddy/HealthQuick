@@ -8,7 +8,7 @@ const Greeting = () => {
   
 
   return (
-    <div className='flex justify-center w-full h-full mx-5 flex-col'>
+    <div className='flex justify-center w-full mx-5 flex-col'>
       <div className='flex items-center gap-x-2'>
         <h1 className='text-2xl font-semibold text-TBlack'>Hi {userDetails? userDetails.name : "Guest"}</h1>
         <img src={userDetails? userDetails.photo : "./src/assets/user.png"}  className='w-6 h-6 rounded-xl' ></img>
