@@ -21,7 +21,7 @@ const MealBox = () => {
           setCalories={setCalories}
         />
         {calories > 0 && (
-          <button className="my-2 w-32 bg-DGreen text-white px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack">
+          <button className="my-2 w-32 bg-DGreen text-BWhite px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack">
            Save
           </button>
         )

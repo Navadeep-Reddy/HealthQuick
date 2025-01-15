@@ -74,7 +74,7 @@ const MealInput = ({mealsList, setMealsList, setResult, setCalories}) => {
       </div>
       <button
         onClick={handleSubmit}
-        className="mt-6 w-32 bg-DGreen text-white px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack"
+        className="mt-6 w-32 bg-DGreen text-BWhite px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack"
       >
         Calculate
       </button>
