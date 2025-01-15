@@ -35,7 +35,10 @@
           Proteins,
           Carbs,
           Fats,
-          Calories: calories  
+          Calories: calories,
+          UserName: userDetails.name,
+          UserEmail: userDetails.email,
+          UserId: userDetails.id  
         });
       }
       catch(error){

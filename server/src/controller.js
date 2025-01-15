@@ -76,10 +76,12 @@ const getUserId = async (req, res) => {
 const postMeal = async (req, res) => {
 
   try{
-    const {Calories, Proteins, Carbs, Fats} = req.body;
+    const {Calories, Proteins, Carbs, Fats, UserName, UserEmail, UserId} = req.body;
 
     const result = await meal_collection.insertOne({
-      name: "Navadeep",
+      name: UserName,
+      email: UserEmail,
+      id:UserId,
       nutrients: {
         Proteins: Proteins,
         Carbs: Carbs,
