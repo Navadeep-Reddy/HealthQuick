@@ -1,32 +1,10 @@
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-  {
-    name: 'Proteins',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Carbs',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Fats',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-
-];
-
 export default class Example extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/p/sandbox/simple-bar-chart-72d7y5';
 
   render() {
+    const {data} = this.props;
     return (
     <div className='w-full h-[400px] my-10'>
       <ResponsiveContainer width="100%" height="100%">
@@ -46,8 +24,8 @@ export default class Example extends PureComponent {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-          <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+          <Bar dataKey="Actual" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+          <Bar dataKey="Ideal" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
         </BarChart>
       </ResponsiveContainer>
       </div>
