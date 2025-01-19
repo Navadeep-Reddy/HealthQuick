@@ -136,9 +136,67 @@ const getMacros = async (req, res) => {
   }
 };
 
+const postRecommendMacros = async (req, res) => {
+  try {
+
+    //Calories is not being used 
+    const { totalProteins, totalCarbs, totalFats, totalCalories } = req.body;
+    
+
+    const structuredPrompt = `Return ONLY a raw JSON object (no markdown, no backticks) with the suggested macronutrient balanced nutritients amount if this is the current intake of Proteins, Carbs, Fats in grams respectively ${totalProteins, totalCarbs, totalFats} with this exact structure an do not mention the units:
+    {
+      "RecommendedProteins": "<value> g",
+      "RecommendedCarbs": "<value> g",
+      "RecommendedFats": "<value> g"
+    }`;
+
+    const response = await model.generateContent(structuredPrompt);
+    let jsonString = response.response.text().trim();
+    
+    // Remove any markdown formatting if present
+    if (jsonString.includes("```")) {
+      jsonString = jsonString.replace(/```json\n|\n```|```/g, "");
+    }
+    
+    const nutritionData = JSON.parse(jsonString);
+    return res.json(nutritionData);
+  } catch (error) {
+    console.error("Error details:", error);
+    return res.json({"Proteins":"0","Carbs":"0","Fats":"0","Calories":"0"});
+  }
+};
+
+const postVerdict = async (req, res) => {
+  try {
+
+    //Calories is being used 
+    const { totalProteins, totalCarbs, totalFats, totalCalories } = req.body;
+    
+
+    const structuredPrompt = `
+Based on the following dietary information, determine whether this diet is nutritionally balanced and provides adequate nutrients. 
+
+* **Total Proteins:** ${totalProteins} grams
+* **Total Carbohydrates:** ${totalCarbs} grams
+* **Total Fats:** ${totalFats} grams
+* **Total Calories:** ${totalCalories} calories
+
+Provide a concise answer (e.g., "This diet appears balanced.", or "This diet may be low in protein. Consider increasing intake of [sources of protein]"). If the diet is not balanced, suggest specific and actionable recommendations for improvement. 
+`;              
+    const response = await model.generateContent(structuredPrompt);
+    
+    return res.send(response.response.text());
+  } catch (error) {
+    console.error("Error details:", error);
+    return res.send(`Failed to get verdict ${error}`)
+  }
+};
+
 module.exports = {
   postRecommendFood,
   getUserId,
   postMeal,
-  getMacros
+  getMacros,
+  postRecommendMacros,
+  postVerdict
 }

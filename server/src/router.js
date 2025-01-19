@@ -10,7 +10,9 @@ router.post('/mealLog', controller.postMeal)
 
 router.get('/macros/:uid', controller.getMacros)
 
-router.post('/verdict/:')
+router.post('/recommendedMacros', controller.postRecommendMacros)
+
+router.post('/verdict', controller.postVerdict)
 
 
 module.exports = router;
