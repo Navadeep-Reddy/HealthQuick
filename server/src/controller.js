@@ -103,8 +103,42 @@ const postMeal = async (req, res) => {
     
 }
 
+
+const getMacros = async (req, res) => {
+  try {
+    const { uid } = req.params; // Assuming the user ID is passed as a URL parameter
+
+    // Perform the aggregation query
+    const result = await meal_collection.aggregate([
+      {
+        $match: { id: uid } // Filter documents with the provided user ID
+      },
+      {
+        $group: {
+          _id: "$id", // Group by the `id` field
+          totalProteins: { $sum: "$nutrients.Proteins" },
+          totalCarbs: { $sum: "$nutrients.Carbs" },
+          totalFats: { $sum: "$nutrients.Fats" },
+          totalCalories: { $sum: "$nutrients.Calories" }
+        }
+      }
+    ]).toArray(); // Convert the aggregation cursor to an array
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "No data found for the specified user ID" });
+    }
+
+    // Send the aggregated result as the response
+    res.json(result[0]); // Return the first (and only) result
+  } catch (error) {
+    console.error("Error during aggregation:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 module.exports = {
   postRecommendFood,
   getUserId,
-  postMeal
+  postMeal,
+  getMacros
 }

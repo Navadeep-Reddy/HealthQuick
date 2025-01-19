@@ -8,5 +8,9 @@ router.get('/userid:googleid', controller.getUserId)
 
 router.post('/mealLog', controller.postMeal)
 
+router.get('/macros/:uid', controller.getMacros)
+
+router.post('/verdict/:')
+
 
 module.exports = router;

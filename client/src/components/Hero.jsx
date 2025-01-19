@@ -6,7 +6,7 @@ import MealBox from './MealBox'
 
 const Hero = () => {
   return (
-    <div className='w-[80%] mx-auto my-[110px]  h-[100vh] bg-gray-200'>
+    <div className='w-[80%] mx-auto my-[110px]  h-[100vh]'>
       <Navigation />
       <Greeting />
       <MealBox />

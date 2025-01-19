@@ -5,6 +5,7 @@
   import { useUser } from "../context/UserContext";
 
   const MealBox = () => {
+    const [message, setMessage] = useState(false)
     const [mealsList, setMealsList] = useState([""]);
     const [result, setResult] = useState([
       { name: 'Proteins', value: 0 },
@@ -40,6 +41,8 @@
           UserEmail: userDetails.email,
           UserId: userDetails.id  
         });
+        setMessage(true)
+
       }
       catch(error){
         console.error('Error posting meal', error)
@@ -60,6 +63,10 @@
             <button className="my-2 w-32 bg-DGreen text-BWhite px-4 py-2 rounded-md hover:bg-LGreen hover:text-TBlack" onClick={postToDatabase}>
             Save
             </button>
+          )
+          }
+          {message && (
+            <p className='my-2'>Your meal has been logged</p>
           )
 
           }
