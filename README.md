@@ -1,6 +1,6 @@
 # HealthQuick
 
-HealthQuick is a health tracking web application that allows users to log and analyze their daily macro-nutrient intake. The app calculates the total values of Proteins, Carbs, Fats, and Calories based on meals logged by the user. This project uses ReactJS for the frontend, ExpressJS for the backend, and MongoDB for storing user and meal data.
+HealthQuick is a health tracking web application that allows users to log and analyze their macro-nutrient intake smartly with dynamic food descriptions using Gemini API. The app calculates the total values of Proteins, Carbs, Fats, and Calories based on meals logged by the user. This project uses ReactJS for the frontend, ExpressJS for the backend, and MongoDB for storing user and meal data.
 
 ![image alt](https://github.com/Navadeep-Reddy/ProjectScreenshots-/blob/cb8938497c85130e38033e5395ef21c0fd33411d/HealthQuick%20Screenshots/Screenshot%20from%202025-01-20%2022-27-29.png)
 
