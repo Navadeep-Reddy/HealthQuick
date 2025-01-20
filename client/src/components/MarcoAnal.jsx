@@ -103,7 +103,7 @@ const MarcoAnal = () => {
       <div className='w-full flex flex-col mx-10'>
         <h1 className='text-3xl font-semibold text-DGreen'>Verdict</h1>
         <div>
-          <p className='text-TBlack'>
+          <p className='text-TBlack text-xl'>
             {verdict ? verdict : recomMacros ? 'Processing Verdict...' : 'Loading...'}
           </p>
         </div>

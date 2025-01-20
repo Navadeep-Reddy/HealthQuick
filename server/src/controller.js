@@ -181,7 +181,7 @@ Based on the following dietary information, determine whether this diet is nutri
 * **Total Fats:** ${totalFats} grams
 * **Total Calories:** ${totalCalories} calories
 
-Provide a concise answer (e.g., "This diet appears balanced.", or "This diet may be low in protein. Consider increasing intake of [sources of protein]"). If the diet is not balanced, suggest specific and actionable recommendations for improvement. 
+Provide a concise answer (e.g., "This diet appears balanced.", or "This diet may be low in protein. Consider increasing intake of [sources of protein]"). If the diet is not balanced, suggest specific and actionable recommendations for improvement and do not suggest relative to a day but generally look at the balance. 
 `;              
     const response = await model.generateContent(structuredPrompt);
     
