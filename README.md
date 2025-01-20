@@ -30,7 +30,7 @@ HealthQuick is a health tracking web application that allows users to log and an
 - **API**: Gemini API (for nutritional analysis)
 
 
-```markdown
+
 # Steps to Run
 
 Follow these steps to run the project locally:
@@ -92,7 +92,7 @@ npm run dev
 Once both the server and client are running, open your browser and visit:
 
 ```
-http://localhost:3000
+http://localhost:5173
 ```
 
 This will load the HealthQuick web application.
