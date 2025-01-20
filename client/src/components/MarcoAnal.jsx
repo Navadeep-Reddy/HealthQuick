@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PercentageChart from './PercentageChart';
 import axios from 'axios';
 import { useUser } from '../context/UserContext';
+import { motion } from 'framer-motion';
 
 const MarcoAnal = () => {
   const { userDetails } = useUser();
@@ -75,20 +76,20 @@ const MarcoAnal = () => {
       const updatedChartData = [
         {
           name: 'Proteins',
-          Actual: userMacros.totalProteins, // 'total' prefix for Actual
-          Ideal: recomMacros.RecommendedProteins, // 'Recommended' prefix for Ideal
-          amt: recomMacros.RecommendedProteins, // Use Ideal value for additional metrics
+          Actual: userMacros.totalProteins,
+          Ideal: recomMacros.RecommendedProteins,
+          amt: recomMacros.RecommendedProteins,
         },
         {
           name: 'Carbs',
-          Actual: userMacros.totalCarbs, // 'total' prefix for Actual
-          Ideal: recomMacros.RecommendedCarbs, // 'Recommended' prefix for Ideal
+          Actual: userMacros.totalCarbs,
+          Ideal: recomMacros.RecommendedCarbs,
           amt: recomMacros.RecommendedCarbs,
         },
         {
           name: 'Fats',
-          Actual: userMacros.totalFats, // 'total' prefix for Actual
-          Ideal: recomMacros.RecommendedFats, // 'Recommended' prefix for Ideal
+          Actual: userMacros.totalFats,
+          Ideal: recomMacros.RecommendedFats,
           amt: recomMacros.RecommendedFats,
         },
       ];
@@ -97,18 +98,51 @@ const MarcoAnal = () => {
   }, [userMacros, recomMacros]);
 
   return (
-    <div className='w-[80%] mx-auto h-[100vh] '>
-      <h1 className='text-5xl text-center font-medium text-DGreen'>Macro Nutrient Analysis</h1>
-      <PercentageChart data={chartData} />
-      <div className='w-full flex flex-col mx-10'>
-        <h1 className='text-3xl font-semibold text-DGreen'>Verdict</h1>
-        <div>
-          <p className='text-TBlack text-xl'>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.5 }}
+      className="w-[80%] mx-auto h-[100vh]"
+    >
+      {/* Title */}
+      <motion.h1
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="text-5xl text-center font-medium text-DGreen"
+      >
+        Macro Nutrient Analysis
+      </motion.h1>
+
+      {/* Chart */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        <PercentageChart data={chartData} />
+      </motion.div>
+
+      {/* Verdict */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="w-full flex flex-col mx-10"
+      >
+        <h1 className="text-3xl font-semibold text-DGreen">Verdict</h1>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+        >
+          <p className="text-TBlack text-xl">
             {verdict ? verdict : recomMacros ? 'Processing Verdict...' : 'Loading...'}
           </p>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
