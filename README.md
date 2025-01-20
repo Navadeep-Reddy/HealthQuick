@@ -28,3 +28,73 @@ HealthQuick is a health tracking web application that allows users to log and an
 - **Database**: MongoDB
 - **Authentication**: Google OAuth using Firebase
 - **API**: Gemini API (for nutritional analysis)
+
+
+```markdown
+# Steps to Run
+
+Follow these steps to run the project locally:
+
+## 1. Clone the Repository
+
+First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/your-username/HealthQuick.git
+```
+
+## 2. Set Up the Server
+
+* Navigate to the `server` directory:
+
+```bash
+cd HealthQuick/server
+```
+
+* Install dependencies:
+
+```bash
+npm install
+```
+
+* Open `controller.js` and provide the following:
+  * **MongoDB connection string**: Make sure you replace the placeholder with your actual MongoDB connection string.
+  * **Google Gemini API Key**: Add your API key for the Gemini API in the relevant field.
+
+* Start the server:
+
+```bash
+node server.js
+```
+
+## 3. Set Up the Client
+
+* Open a new terminal window and navigate to the `client` directory:
+
+```bash
+cd HealthQuick/client
+```
+
+* Install the dependencies:
+
+```bash
+npm install
+```
+
+* Start the client:
+
+```bash
+npm run dev
+```
+
+## 4. Access the Application
+
+Once both the server and client are running, open your browser and visit:
+
+```
+http://localhost:3000
+```
+
+This will load the HealthQuick web application.
+
+
