@@ -19,8 +19,8 @@ HealthQuick is a health tracking web application that allows users to log and an
 
 ## Features
 - **Login with Google**: Authenticate users via Google login.
-- **Meal Logging**: Users can log their meals with nutritional information like Proteins, Carbs, Fats, and Calories.
-- **MacroNutrient Analysis**: Get a total sum of Proteins, Carbs, Fats, and Calories based on logged meals.
+- **Meal Logging**: Users can log their meals to get nutritional information about their meals graphically.
+- **MacroNutrient Analysis**: Get a verdict of their current diet and also display the recommended amounts of macros using Gemini API.
   
 ## Tech Stack
 - **Frontend**: ReactJS
