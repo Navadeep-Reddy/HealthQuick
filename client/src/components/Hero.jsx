@@ -12,6 +12,7 @@ const Hero = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
       className="w-[80%] mx-auto my-[110px] h-[100vh]"
+      name="Home"
     >
       {/* Navigation Section */}
       <motion.div
@@ -36,6 +37,7 @@ const Hero = () => {
         initial={{ x: 50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.6 }}
+        name="Chart"
       >
         <MealBox />
       </motion.div>

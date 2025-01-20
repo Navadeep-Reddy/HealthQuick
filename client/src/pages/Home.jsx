@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div >
       <Hero />
-      <div ref = {AnalRef}>
+      <div ref = {AnalRef} >
         {macroVisible && (
           <MacroAnal />
         )

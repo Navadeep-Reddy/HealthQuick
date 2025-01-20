@@ -47,12 +47,12 @@ const Navigation = () => {
         } duration-700 cursor-pointer`}
       >
         <li>
-          <Link to="Home" smooth={true} duration={500} offset={0}>
+          <Link to="Home" smooth={true} duration={500} offset={-100}>
             Home
           </Link>
         </li>
         <li>
-          <Link to="Available" smooth={true} duration={500} offset={-100}>
+          <Link to="Chart" smooth={true} duration={500} offset={500}>
             Macro-Analysis
           </Link>
         </li>
